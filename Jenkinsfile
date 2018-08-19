@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-
-
 pipeline {
     agent any 
     stages {
@@ -45,7 +41,6 @@ pipeline {
 		
     }
 }
-=======
 node('master') 
 {
     stage('ContinuousDownload')
@@ -85,4 +80,5 @@ node('master')
     
    
 }
->>>>>>> f67b357... W
+}
+
