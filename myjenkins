@@ -1,0 +1,21 @@
+node('master') {
+    stage('ContinuosDeployment')
+    {
+        git 'https://github.com/nagarjun27/maven-example.git'
+        
+    }
+    stage('ContinuosBuild')
+    {
+    sh 'mvn package'
+    }   
+    stage('ContinuosDeploy')
+    {
+        sh 'scp /home/vagrant/.jenkins/workspace/ScriptedPipeline/webapp/target/webapp.war vagrant@10.0.0.32:/var/lib/tomcat7/webapps/qaenv.war'
+    }
+    stage('ContinuosTesting')
+    {
+        git 'https://github.com/nagarjun27/TestingOnLinux.git'
+        sh 'java -jar /home/vagrant/.jenkins/workspace/ScriptedPipeline/testing.jar'
+    }
+
+}
